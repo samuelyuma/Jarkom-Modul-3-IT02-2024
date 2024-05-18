@@ -32,7 +32,7 @@ Kelompok IT02 :
 
 ### Topologi
 
-**screenshot topologi**
+![Topologi](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/f06ac378-12fe-44f0-861c-83a71af0045e)
 
 ### Network Configuration
 
@@ -207,14 +207,14 @@ c. Menambahkan line berikut pada file `etc/bind/named.conf.local`
 
 ```
 zone "atreides.it02.com" {
- 		type master;
- 		file "/etc/bind/it02/atreides.it02.com";
- };
+ 	type master;
+ 	file "/etc/bind/it02/atreides.it02.com";
+};
 
 zone "harkonen.it02.com" {
- 		type master;
- 		file "/etc/bind/it02/harkonen.it02.com";
- };
+ 	type master;
+ 	file "/etc/bind/it02/harkonen.it02.com";
+};
 ```
 
 d. Membuat DNS record pada `/etc/bind/it02/atreides.it02.com`
@@ -228,9 +228,9 @@ $TTL    604800
                         2419200         ; Expire
                         604800 )		; Negative Cache TTL
 ;
-@			IN      NS      atreides.it02.com.
-@			IN      A       192.234.2.2 ; IP Leto
-www			IN      CNAME   atreides.it02.com.
+@		IN      NS      atreides.it02.com.
+@		IN      A       192.234.2.2 ; IP Leto
+www		IN      CNAME   atreides.it02.com.
 ```
 
 e. Membuat DNS record pada `/etc/bind/it02/harkonen.it02.com`
@@ -244,9 +244,9 @@ $TTL    604800
                         2419200         ; Expire
                         604800 )		; Negative Cache TTL
 ;
-@			IN      NS      harkonen.it02.com.
-@			IN      A       192.234.1.2 ; IP Vladimir
-www			IN      CNAME   harkonen.it02.com.
+@		IN      NS      harkonen.it02.com.
+@		IN      A       192.234.1.2 ; IP Vladimir
+www		IN      CNAME   harkonen.it02.com.
 ```
 
 f. Merestart service dari bind9
@@ -521,14 +521,14 @@ server {
 
     server_name _;
 
-    location / {
-        try_files \$uri \$uri/ /index.php?\$query_string;
-    }
+	location / {
+		try_files \$uri \$uri/ /index.php?\$query_string;
+	}
 
-    location ~ \.php$ {
-        include snippets/fastcgi-php.conf;
-        fastcgi_pass unix:/var/run/php/php7.3-fpm.sock;
-    }
+	location ~ \.php$ {
+		include snippets/fastcgi-php.conf;
+		fastcgi_pass unix:/var/run/php/php7.3-fpm.sock;
+	}
 
     error_log /var/log/nginx/jarkom-it02_error.log;
     access_log /var/log/nginx/jarkom-it02_access.log;
@@ -618,12 +618,12 @@ server {
 
     server_name _;
 
-    location / {
+	location / {
 		# Soal 10
 		auth_basic "Restricted Content";
-        auth_basic_user_file /etc/nginx/supersecret/htpasswd;
-        proxy_pass http://worker;
-    }
+		auth_basic_user_file /etc/nginx/supersecret/htpasswd;
+		proxy_pass http://worker;
+	}
 }
 ```
 
@@ -651,8 +651,10 @@ service php7.3-fpm restart
 Testing dilakukan dengan menjalankan command berikut
 
 ```
-
+ab -n 1000 -c 100 http://192.234.4.3/
 ```
+
+![Soal 7](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/9954fdb4-babb-4e98-9b6d-58b23977fc9f)
 
 ## Soal 8
 
@@ -711,11 +713,11 @@ server {
 
     server_name _;
 
-    location / {
+	location / {
 		auth_basic "Restricted Content";
         auth_basic_user_file /etc/nginx/supersecret/htpasswd;
         proxy_pass http://worker;
-    }
+	}
 }
 ```
 
@@ -760,7 +762,7 @@ server {
         auth_basic "Restricted Content";
         auth_basic_user_file /etc/nginx/supersecret/htpasswd;
         proxy_pass http://worker;
-    }
+	}
 
     location /dune {
         proxy_pass https://www.dunemovie.com.au/;
@@ -768,7 +770,7 @@ server {
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
-    }
+	}
 }
 ```
 
@@ -805,7 +807,7 @@ server {
 
     server_name _;
 
-    location / {
+	location / {
 		allow 192.234.1.37;
 		allow 192.234.1.67;
 		allow 192.234.2.203;
@@ -815,15 +817,15 @@ server {
         auth_basic "Restricted Content";
         auth_basic_user_file /etc/nginx/supersecret/htpasswd;
         proxy_pass http://worker;
-    }
+	}
 
-    location /dune {
+	location /dune {
         proxy_pass https://www.dunemovie.com.au/;
         proxy_set_header Host www.dunemovie.com.au;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
-    }
+	}
 }
 ```
 
@@ -846,11 +848,11 @@ lynx 192.234.4.3
 
 **FYI**: Section atas adalah client **Paul** dan section bawah adalah client **Dmitri**
 
-Untuk membuatnya dapat mengakses Load Balancer, IP client harus dimasukkan pada daftar **allow** di server. Adapun untuk mendapatkan IP client dapat dilakukan dengan cara berikut:
+Untuk membuatnya dapat mengakses load balancer, IP client harus dimasukkan pada daftar **allow** di server. Adapun untuk mendapatkan IP client dapat dilakukan dengan cara berikut:
 
-a. Akses Load Balancer menggunakan client dengan command `lynx 192.234.4.3`
+a. Akses load balancer menggunakan client dengan command `lynx 192.234.4.3`
 
-b. Masukkan command `tail -f /var/log/nginx/access.log` di console Load Balancer
+b. Masukkan command `tail -f /var/log/nginx/access.log` di console load balancer
 
 ![Soal 12 - 2](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/fbf0d870-6882-4371-b6ff-d1adfd62ac91)
 
@@ -862,22 +864,39 @@ c. Tambahkan IP tersebut pada bagian `# IP Client`
 
 ```
 location / {
-		allow 192.234.1.37;
-		allow 192.234.1.67;
-		allow 192.234.2.203;
-		allow 192.234.2.207;
-		# IP Client
-		deny all;
+	allow 192.234.1.37;
+	allow 192.234.1.67;
+	allow 192.234.2.203;
+	allow 192.234.2.207;
+	# IP Client
+	deny all;
 
-        auth_basic "Restricted Content";
-        auth_basic_user_file /etc/nginx/supersecret/htpasswd;
-        proxy_pass http://worker;
-    }
+	auth_basic "Restricted Content";
+	auth_basic_user_file /etc/nginx/supersecret/htpasswd;
+	proxy_pass http://worker;
+}
+```
+
+sehingga nantinya menjadi
+
+```
+location / {
+	allow 192.234.1.37;
+	allow 192.234.1.67;
+	allow 192.234.2.203;
+	allow 192.234.2.207;
+	allow 192.234.2.16;
+	deny all;
+
+	auth_basic "Restricted Content";
+	auth_basic_user_file /etc/nginx/supersecret/htpasswd;
+	proxy_pass http://worker;
+}
 ```
 
 d. Save file tersebut dan restart service nginx dengan `service nginx restart`
 
-e. Akses kembali Load Balancer menggunakan client sebelumnya dengan command `lynx 192.234.4.3`
+e. Akses kembali load balancer menggunakan client sebelumnya dengan command `lynx 192.234.4.3`
 
 ![Soal 12 - 3](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/4053ebc8-f5f3-4208-b516-6b5da99a5651)
 
@@ -1054,8 +1073,8 @@ server {
 	}
 
 	location ~ /\.ht {
-            deny all;
-    }
+        deny all;
+	}
 
     error_log /var/log/nginx/deployment_error.log;
     access_log /var/log/nginx/deployment_access.log;
@@ -1134,29 +1153,20 @@ Untuk memastikan ketiganya bekerja sama secara adil untuk mengatur **atreides** 
 
 ### Setup DNS Server (Irulan)
 
-a. Menambahkan line berikut pada file `etc/bind/named.conf.local`
-
-```
-zone "proxy-bind.it02.com" {
-		type master;
-		file "/etc/bind/it02/proxy.it02.com";
-};
-```
-
-b. Membuat DNS record pada `/etc/bind/it02/proxy-bind.it02.com`
+a. Mengedit konfigurasi DNS record pada `/etc/bind/it02/proxy-bind.it02.com` dengan mengarahkannya ke IP Stilgar
 
 ```
 $TTL    604800
-@       IN      SOA     proxy-bind.it02.com. proxy-bind.it02.com. (
+@       IN      SOA     atreides.it02.com. atreides.it02.com. (
                         2				; Serial
                         604800			; Refresh
                         86400			; Retry
                         2419200         ; Expire
                         604800 )		; Negative Cache TTL
 ;
-@			IN      NS      proxy-bind.it02.com.
+@			IN      NS      atreides.it02.com.
 @			IN      A       192.234.4.3 ; IP Stilgar
-www			IN      CNAME   proxy-bind.it02.com.
+www			IN      CNAME   atreides.it02.com.
 ```
 
 c. Restart service dari bind9
@@ -1183,11 +1193,11 @@ server {
 
 	index index.html index.htm index.nginx-debian.html;
 
-	server_name proxy-bind.it02.com www.proxy-bind.it02.com;
+	server_name atreides.it02.com www.atreides.it02.com;
 
 	location / {
 		proxy_pass http://worker;
-    }
+	}
 }
 ```
 
@@ -1196,6 +1206,16 @@ b. Restart service dari nginx
 ```
 service nginx restart
 ```
+
+### Testing
+
+Testing ini dilakukan dengan menjalankan command berikut
+
+```
+ab -n 500 -c 50 -p auth.json -T application/json http://atreides.it02.com/api/auth/login
+```
+
+![Soal 18](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/836622b2-146d-42af-bd61-61949f5aee55)
 
 ## Soal 19
 
@@ -1231,7 +1251,7 @@ pm.max_spare_servers = <value>
 pm.process_idle_timeout = 10s
 ```
 
-**FYI**: Nilai dari `<value>` tersebut diatur pada saat melakukan percobaan sebagai berikut:
+**FYI**: Nilai dari `<value>` tersebut diatur pada saat melakukan percobaan sebagai berikut
 
 #### Percobaan Pertama
 
@@ -1282,3 +1302,21 @@ b. Restart service dari nginx
 ```
 service nginx restart
 ```
+
+### Testing
+
+Testing ini dilakukan dengan menjalankan command berikut
+
+```
+ab -n 100 -c 10 http://192.234.4.3/
+```
+
+**Sebelum menggunakan algoritma `least_conn`**
+
+![Soal 20 - 1](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/8624c2fd-9488-4529-876f-a094624361a1)
+
+**Sesudah menggunakan algoritma `least_conn`**
+
+![Soal 20 - 2](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/3c0581ed-73f6-47c5-9622-3144e4d9ecf9)
+
+Dari screenshot tersebut, dapat dilihat bahwa ...

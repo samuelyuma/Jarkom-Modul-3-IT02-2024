@@ -130,11 +130,3 @@ chown -R www-data.www-data /var/www/laravel-praktikum-jarkom/storage
 service php8.0-fpm start
 
 service nginx restart
-
-# Soal 15 & 16
-echo '
-{
-    "username": "kelompokit02",
-    "password": "passwordit02"
-}
-' > /var/www/laravel-praktikum-jarkom/auth.json

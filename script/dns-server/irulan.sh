@@ -8,19 +8,13 @@ service bind9 start
 echo '
 // Soal 0
 zone "atreides.it02.com" {
- 		type master;
- 		file "/etc/bind/it02/atreides.it02.com";
- };
+ 	type master;
+ 	file "/etc/bind/it02/atreides.it02.com";
+};
 
 zone "harkonen.it02.com" {
- 		type master;
- 		file "/etc/bind/it02/harkonen.it02.com";
- };
-
-// Soal 18
-zone "proxy-bind.it02.com" {
-		type master;
-		file "/etc/bind/it02/proxy.it02.com";
+ 	type master;
+ 	file "/etc/bind/it02/harkonen.it02.com";
 };
 '> /etc/bind/named.conf.local
 
@@ -64,21 +58,6 @@ www			IN      CNAME   harkonen.it02.com.
 ' > /etc/bind/it02/harkonen.it02.com
 
 echo '
-; BIND data file for proxy-bind domain to Stilgar (Soal 0)
-$TTL    604800
-@       IN      SOA     proxy-bind.it02.com. proxy-bind.it02.com. (
-                        2				; Serial
-                        604800			; Refresh
-                        86400			; Retry
-                        2419200         ; Expire
-                        604800 )		; Negative Cache TTL
-;
-@			IN      NS      proxy-bind.it02.com.
-@			IN      A       192.234.4.3 ; IP Stilgar
-www			IN      CNAME   proxy-bind.it02.com.
-' > /etc/bind/it02/proxy-bind.it02.com
-
-echo '
 options {
 	directory "/var/cache/bind";
 
@@ -93,3 +72,19 @@ options {
 ' >/etc/bind/named.conf.options
 
 service bind9 restart
+
+# Soal 18
+echo '
+; BIND data file for Atreides domain to Stilgar (Soal 18)
+$TTL    604800
+@       IN      SOA     atreides.it02.com. atreides.it02.com. (
+                        2				; Serial
+                        604800			; Refresh
+                        86400			; Retry
+                        2419200         ; Expire
+                        604800 )		; Negative Cache TTL
+;
+@			IN      NS      atreides.it02.com.
+@			IN      A       192.234.4.3 ; IP Stilgar
+www			IN      CNAME   atreides.it02.com.
+' > /etc/bind/it02/atreides.it02.com
