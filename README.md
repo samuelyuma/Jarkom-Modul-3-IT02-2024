@@ -32,7 +32,7 @@ Kelompok IT02 :
 
 ### Topologi
 
-![Topologi](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/f06ac378-12fe-44f0-861c-83a71af0045e)
+![Topologi](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/d12418d6-b5f7-44d9-8b48-cd81d1b75060)
 
 ### Network Configuration
 
@@ -513,13 +513,13 @@ d. Menambahkan line berikut pada file `/etc/nginx/sites-available/jarkom-it02.co
 
 ```
 server {
-    listen 80;
+	listen 80;
 
-    root /var/www/html;
+	root /var/www/html;
 
-    index index.php index.html index.htm;
+	index index.php index.html index.htm;
 
-    server_name _;
+	server_name _;
 
 	location / {
 		try_files \$uri \$uri/ /index.php?\$query_string;
@@ -530,8 +530,8 @@ server {
 		fastcgi_pass unix:/var/run/php/php7.3-fpm.sock;
 	}
 
-    error_log /var/log/nginx/jarkom-it02_error.log;
-    access_log /var/log/nginx/jarkom-it02_access.log;
+	error_log /var/log/nginx/jarkom-it02_error.log;
+	access_log /var/log/nginx/jarkom-it02_access.log;
 }
 ```
 
@@ -555,8 +555,6 @@ service php7.3-fpm restart
 ```
 
 ### Testing
-
-Testing dilakukan dengan menjalankan command berikut
 
 ```
 lynx 192.234.1.2
@@ -601,8 +599,8 @@ c. Menambahkan line berikut pada file `/etc/nginx/sites-available/load-balancer-
 ```
 upstream worker {
 	# least_conn;
-    # ip_hash;
-    # hash $request_uri consistent;
+	# ip_hash;
+	# hash $request_uri consistent;
 	# random two least_conn;
 	server 192.234.1.2; # IP Vladimir
 	server 192.234.1.3; # IP Rabban
@@ -614,9 +612,9 @@ server {
 
 	root /var/www/html;
 
-    index index.html index.htm index.nginx-debian.html;
+	index index.html index.htm index.nginx-debian.html;
 
-    server_name _;
+	server_name _;
 
 	location / {
 		# Soal 10
@@ -648,13 +646,11 @@ service php7.3-fpm restart
 
 ### Testing
 
-Testing dilakukan dengan menjalankan command berikut
-
 ```
 ab -n 1000 -c 100 http://192.234.4.3/
 ```
 
-![Soal 7](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/9954fdb4-babb-4e98-9b6d-58b23977fc9f)
+![Soal 7](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/53b5fc86-9b55-489e-85c1-004b62800179)
 
 ## Soal 8
 
@@ -709,9 +705,9 @@ server {
 
 	root /var/www/html;
 
-    index index.html index.htm index.nginx-debian.html;
+	index index.html index.htm index.nginx-debian.html;
 
-    server_name _;
+	server_name _;
 
 	location / {
 		auth_basic "Restricted Content";
@@ -729,8 +725,6 @@ service php7.3-fpm restart
 ```
 
 ### Testing
-
-Testing dilakukan dengan menjalankan command berikut
 
 ```
 lynx 192.234.4.3
@@ -750,26 +744,26 @@ a. Edit konfigurasi `server` pada file `/etc/nginx/sites-available/load-balancer
 
 ```
 server {
-    listen 80;
+	listen 80;
 
-    root /var/www/html;
+	root /var/www/html;
 
-    index index.html index.htm index.nginx-debian.html;
+	index index.html index.htm index.nginx-debian.html;
 
-    server_name _;
+	server_name _;
 
-    location / {
-        auth_basic "Restricted Content";
-        auth_basic_user_file /etc/nginx/supersecret/htpasswd;
-        proxy_pass http://worker;
+	location / {
+		auth_basic "Restricted Content";
+		auth_basic_user_file /etc/nginx/supersecret/htpasswd;
+		proxy_pass http://worker;
 	}
 
-    location /dune {
-        proxy_pass https://www.dunemovie.com.au/;
-        proxy_set_header Host www.dunemovie.com.au;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
+	location /dune {
+		proxy_pass https://www.dunemovie.com.au/;
+		proxy_set_header Host www.dunemovie.com.au;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header X-Forwarded-Proto $scheme;
 	}
 }
 ```
@@ -782,8 +776,6 @@ service php7.3-fpm restart
 ```
 
 ### Testing
-
-Testing dilakukan dengan menjalankan command berikut
 
 ```
 lynx 192.234.4.3/dune
@@ -799,13 +791,13 @@ a. Edit konfigurasi `server` pada file `/etc/nginx/sites-available/load-balancer
 
 ```
 server {
-    listen 80;
+	listen 80;
 
-    root /var/www/html;
+	root /var/www/html;
 
-    index index.html index.htm index.nginx-debian.html;
+	index index.html index.htm index.nginx-debian.html;
 
-    server_name _;
+	server_name _;
 
 	location / {
 		allow 192.234.1.37;
@@ -814,17 +806,17 @@ server {
 		allow 192.234.2.207;
 		deny all;
 
-        auth_basic "Restricted Content";
-        auth_basic_user_file /etc/nginx/supersecret/htpasswd;
-        proxy_pass http://worker;
+		auth_basic "Restricted Content";
+		auth_basic_user_file /etc/nginx/supersecret/htpasswd;
+		proxy_pass http://worker;
 	}
 
 	location /dune {
-        proxy_pass https://www.dunemovie.com.au/;
-        proxy_set_header Host www.dunemovie.com.au;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
+		proxy_pass https://www.dunemovie.com.au/;
+		proxy_set_header Host www.dunemovie.com.au;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header X-Forwarded-Proto $scheme;
 	}
 }
 ```
@@ -837,8 +829,6 @@ service php7.3-fpm restart
 ```
 
 ### Testing
-
-Testing dijalankan dengan menggunakan command berikut
 
 ```
 lynx 192.234.4.3
@@ -965,8 +955,6 @@ apt-get install mariadb-server -y
 
 ![Soal 13 - 1](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/a3c1f2fa-bb23-418e-8a75-ea1241fb345d)
 
-Testing dilakukan dengan menjalankan command berikut pada client
-
 ```
 mariadb --host=192.234.4.2 --port=3306 --user=kelompokit02 --password
 ```
@@ -1073,11 +1061,11 @@ server {
 	}
 
 	location ~ /\.ht {
-        deny all;
+		deny all;
 	}
 
-    error_log /var/log/nginx/deployment_error.log;
-    access_log /var/log/nginx/deployment_access.log;
+	error_log /var/log/nginx/deployment_error.log;
+	access_log /var/log/nginx/deployment_access.log;
 }
 ```
 
@@ -1124,9 +1112,9 @@ Testing dilakukan dengan menjalankan command berikut sesuai laravel worker
 
 **POST /auth/register**
 
-### Setup Laravel Worker (Leto, Duncan, Jessica)
+### Setup Client (Paul & Dmitri)
 
-a. Tambahkan line berikut pada file `/var/www/laravel-praktikum-jarkom/auth.json`
+a. Tambahkan line berikut pada file `/auth.json`
 
 ```
 {
@@ -1134,6 +1122,14 @@ a. Tambahkan line berikut pada file `/var/www/laravel-praktikum-jarkom/auth.json
     "password": "passwordit02"
 }
 ```
+
+### Testing
+
+```
+ab -n 100 -c 10 -p auth.json -T application/json http://192.234.2.2:81/api/auth/register
+```
+
+![Soal 15](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/fb64cf3f-af62-4fb4-bee5-946a44652215)
 
 ## Soal 16
 
@@ -1209,13 +1205,11 @@ service nginx restart
 
 ### Testing
 
-Testing ini dilakukan dengan menjalankan command berikut
-
 ```
-ab -n 500 -c 50 -p auth.json -T application/json http://atreides.it02.com/api/auth/login
+ab -n 100 -c 10 -p auth.json -T application/json http://atreides.it02.com/api/auth/login
 ```
 
-![Soal 18](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/836622b2-146d-42af-bd61-61949f5aee55)
+![Soal 18](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/91a2a004-6827-4115-9ac5-e8f17bbecefe)
 
 ## Soal 19
 
@@ -1305,18 +1299,16 @@ service nginx restart
 
 ### Testing
 
-Testing ini dilakukan dengan menjalankan command berikut
-
 ```
 ab -n 100 -c 10 http://192.234.4.3/
 ```
 
 **Sebelum menggunakan algoritma `least_conn`**
 
-![Soal 20 - 1](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/8624c2fd-9488-4529-876f-a094624361a1)
+![Soal 20 - 1](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/4efd977e-3f99-4665-bafd-74f88494d8fb)
 
 **Sesudah menggunakan algoritma `least_conn`**
 
-![Soal 20 - 2](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/3c0581ed-73f6-47c5-9622-3144e4d9ecf9)
+![Soal 20 - 2](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/d80c92f3-68f0-4e03-9cc2-48250a5c6836)
 
 Dari screenshot tersebut, dapat dilihat bahwa ...
