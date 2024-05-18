@@ -395,6 +395,10 @@ e. Merestart service dari isc-dhcp-server
 service isc-dhcp-server restart
 ```
 
+### Testing
+
+![Soal 2 dan 3](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/b3325169-fd76-4f28-8c41-00959b782ea7)
+
 ## Soal 4
 
 Client mendapatkan DNS dari Princess Irulan dan dapat terhubung dengan internet melalui DNS tersebut
@@ -426,6 +430,10 @@ e. Merestart service dari isc-dhcp-server
 ```
 service isc-dhcp-server restart
 ```
+
+### Testing
+
+![Soal 4](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/0c2c0e1b-9d0a-4d51-bc16-2a41c1be08f2)
 
 ## Soal 5
 
@@ -465,6 +473,8 @@ service isc-dhcp-server restart
 
 ### Testing
 
+![Soal 5](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/1a199a22-c357-4485-9867-7684ebd3e198)
+
 ## Soal 6
 
 Vladimir Harkonen memerintahkan setiap worker(harkonen) PHP, untuk melakukan konfigurasi virtual host untuk website berikut dengan menggunakan php 7.3
@@ -481,22 +491,22 @@ apt-get install lynx nginx wget unzip php7.3 php-fpm -y
 b. Menjalankan service dari php-fpm dan nginx
 
 ```
-$ service php7.3-fpm start
-$ service nginx start
+service php7.3-fpm start
+service nginx start
 ```
 
 c. Untuh file `harkonen.zip` dan letakkan isinya pada directory `/var/www/html/`
 
 ```
-$ mkdir -p /var/www/html/download/
+mkdir -p /var/www/html/download/
 
-$ wget --no-check-certificate 'https://drive.google.com/uc?export=download&id=1lmnXJUbyx1JDt2OA5z_1dEowxozfkn30' -O /var/www/html/download/harkonen.zip
+wget --no-check-certificate 'https://drive.google.com/uc?export=download&id=1lmnXJUbyx1JDt2OA5z_1dEowxozfkn30' -O /var/www/html/download/harkonen.zip
 
-$ unzip /var/www/html/download/harkonen.zip -d /var/www/html/download/
+unzip /var/www/html/download/harkonen.zip -d /var/www/html/download/
 
-$ mv /var/www/html/download/modul-3/* /var/www/html/
+mv /var/www/html/download/modul-3/* /var/www/html/
 
-$ rm -rf /var/www/html/download/
+rm -rf /var/www/html/download/
 ```
 
 d. Menambahkan line berikut pada file `/etc/nginx/sites-available/jarkom-it02.conf`
@@ -540,9 +550,31 @@ rm /etc/nginx/sites-enabled/default
 g. Restart service nginx dan php-fpm
 
 ```
-$ service nginx restart
-$ service php7.3-fpm restart
+service nginx restart
+service php7.3-fpm restart
 ```
+
+### Testing
+
+Testing dilakukan dengan menjalankan command berikut
+
+```
+lynx 192.234.1.2
+```
+
+![Soal 6 - 1](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/05f74bf6-5573-4b62-ab81-e2643c4fb395)
+
+```
+lynx 192.234.1.3
+```
+
+![Soal 6 - 2](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/df6e6115-f90c-4db3-a5f4-7c284e8fcc69)
+
+```
+lynx 192.234.1.4
+```
+
+![Soal 6 - 3](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/b29ac9e9-f098-4678-8d68-7af8712c795e)
 
 ## Soal 7
 
@@ -610,11 +642,17 @@ rm /etc/nginx/sites-enabled/default
 g. Restart service nginx dan php-fpm
 
 ```
-$ service nginx restart
-$ service php7.3-fpm restart
+service nginx restart
+service php7.3-fpm restart
 ```
 
 ### Testing
+
+Testing dilakukan dengan menjalankan command berikut
+
+```
+
+```
 
 ## Soal 8
 
@@ -657,8 +695,8 @@ htpasswd -cb /etc/nginx/supersecret/htpasswd secmart kcksit02
 d. Menjalankan service dari php-fpm dan nginx
 
 ```
-$ service php7.3-fpm start
-$ service nginx start
+service php7.3-fpm start
+service nginx start
 ```
 
 e. Edit konfigurasi `server` pada file `/etc/nginx/sites-available/load-balancer-it02.conf` menjadi seperti berikut
@@ -684,9 +722,21 @@ server {
 f. Restart service nginx dan php-fpm
 
 ```
-$ service nginx restart
-$ service php7.3-fpm restart
+service nginx restart
+service php7.3-fpm restart
 ```
+
+### Testing
+
+Testing dilakukan dengan menjalankan command berikut
+
+```
+lynx 192.234.4.3
+```
+
+![Soal 10 - 1](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/2b2cd024-fdee-49d0-b6ad-bef7acbd3432)
+![Soal 10 - 2](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/f7ddcaba-65f1-421f-8d7f-7cfbb4a6404e)
+![Soal 10 - 3](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/51fe6f16-eedc-468f-8fd4-cac6ed2295b1)
 
 ## Soal 11
 
@@ -725,9 +775,19 @@ server {
 b. Restart service nginx dan php-fpm
 
 ```
-$ service nginx restart
-$ service php7.3-fpm restart
+service nginx restart
+service php7.3-fpm restart
 ```
+
+### Testing
+
+Testing dilakukan dengan menjalankan command berikut
+
+```
+lynx 192.234.4.3/dune
+```
+
+![Soal 11](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/9394edaf-a543-4aca-ba9b-ae8f5eadc2e3)
 
 ## Soal 12
 
@@ -770,11 +830,21 @@ server {
 b. Restart service nginx dan php-fpm
 
 ```
-$ service nginx restart
-$ service php7.3-fpm restart
+service nginx restart
+service php7.3-fpm restart
 ```
 
 ### Testing
+
+Testing dijalankan dengan menggunakan command berikut
+
+```
+lynx 192.234.4.3
+```
+
+![Soal 12 - 1](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/1fbdf586-fde4-44fa-84bb-4fe18045ab34)
+
+**FYI**: Section atas adalah client **Paul** dan section bawah adalah client **Dmitri**
 
 Untuk membuatnya dapat mengakses Load Balancer, IP client harus dimasukkan pada daftar **allow** di server. Adapun untuk mendapatkan IP client dapat dilakukan dengan cara berikut:
 
@@ -782,7 +852,9 @@ a. Akses Load Balancer menggunakan client dengan command `lynx 192.234.4.3`
 
 b. Masukkan command `tail -f /var/log/nginx/access.log` di console Load Balancer
 
-b. Perhatikan pada baris terakhir dan catat IPnya. IP tersebut adalah IP dari client
+![Soal 12 - 2](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/fbf0d870-6882-4371-b6ff-d1adfd62ac91)
+
+b. Perhatikan pada baris terakhir dan catat IPnya. IP tersebut adalah IP dari client (Paul), yaitu `192.234.2.16`
 
 d. Masuk ke file `load-balancer-it02` dengan command `nano /etc/nginx/sites-available/load-balancer-it02
 `
@@ -805,7 +877,11 @@ location / {
 
 d. Save file tersebut dan restart service nginx dengan `service nginx restart`
 
-e. Akses kemabli Load Balancer menggunakan client sebelumnya dengan command `lynx 192.234.4.3`
+e. Akses kembali Load Balancer menggunakan client sebelumnya dengan command `lynx 192.234.4.3`
+
+![Soal 12 - 3](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/4053ebc8-f5f3-4208-b516-6b5da99a5651)
+
+**FYI**: Section atas adalah client **Paul** dan section bawah adalah client **Dmitri** dan dapat dilihat bahwa client **Paul** sudah dapat mengakses load balancer.
 
 ## Soal 13
 
@@ -868,11 +944,15 @@ apt-get install mariadb-server -y
 
 ### Testing
 
-Jalankan command berikut pada client
+![Soal 13 - 1](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/a3c1f2fa-bb23-418e-8a75-ea1241fb345d)
+
+Testing dilakukan dengan menjalankan command berikut pada client
 
 ```
 mariadb --host=192.234.4.2 --port=3306 --user=kelompokit02 --password
 ```
+
+![Soal 13 - 2](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/f23931f3-ad8d-439e-926d-604a73d2b5ee)
 
 ## Soal 14
 
@@ -1006,6 +1086,18 @@ l. Jalankan service dari php-fpm dan restart service dari nginx
 service php8.0-fpm start
 service nginx restart
 ```
+
+### Testing
+
+Testing dilakukan dengan menjalankan command berikut sesuai laravel worker
+
+-   Worker **Leto**: `lynx localhost:81`
+-   Worker **Duncan**: `lynx localhost:82`
+-   Worker **Jessica**: `lynx localhost:83`
+
+![Soal 14](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/ae33ba95-02bb-4b99-80fb-4ee76e781385)
+
+**FYI**: Section kiri adalah worker **Leto**, section kanan atas adalah worker **Duncan**, dan section kanan bawah adalah worker **Jessica**
 
 ## Soal 15
 
