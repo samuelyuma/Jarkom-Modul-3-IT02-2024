@@ -1213,7 +1213,6 @@ ab -n 100 -c 10 -p auth.json -T application/json http://192.234.2.2:81/api/auth/
 ```
 
 ![15](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/143835215/d616f166-9457-41bd-b2c8-a51013a5361f)
-![15](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/143835215/d616f166-9457-41bd-b2c8-a51013a5361f)
 
 ## Soal 16
 
@@ -1229,27 +1228,11 @@ ab -n 100 -c 10 -p auth.json -T application/json http://192.234.2.2:81/api/auth/
 
 ![16](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/143835215/5e97abc8-8d0a-448d-bc07-47b49d5ca93b)
 
-### Testing
-
-```
-ab -n 100 -c 10 -p auth.json -T application/json http://192.234.2.2:81/api/auth/login
-```
-
-![16](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/143835215/5e97abc8-8d0a-448d-bc07-47b49d5ca93b)
-
 ## Soal 17
 
 **atreides** Channel memiliki beberapa endpoint yang harus ditesting sebanyak 100 request dengan 10 request/second. Tambahkan response dan hasil testing pada grimoire.
 
 **GET /me**
-
-### Testing
-
-```
-ab -n 100 -c 10 http://192.234.2.2:81/api/me
-```
-
-![17](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/143835215/8b5e12d6-dda7-46ee-bb07-069ba529020f)
 
 ### Testing
 
