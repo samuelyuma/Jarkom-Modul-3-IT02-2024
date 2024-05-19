@@ -1218,7 +1218,11 @@ a. Tambahkan line berikut pada file `/auth.json`
 ab -n 100 -c 10 -p auth.json -T application/json http://192.234.2.2:81/api/auth/register
 ```
 
-![Soal 15](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/fb64cf3f-af62-4fb4-bee5-946a44652215)
+![15](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/143835215/d616f166-9457-41bd-b2c8-a51013a5361f)
+
+## Soal 16
+
+**atreides** Channel memiliki beberapa endpoint yang harus ditesting sebanyak 100 request dengan 10 request/second. Tambahkan response dan hasil testing pada grimoire.
 
 **POST /auth/login**
 
@@ -1228,6 +1232,12 @@ ab -n 100 -c 10 -p auth.json -T application/json http://192.234.2.2:81/api/auth/
 ab -n 100 -c 10 -p auth.json -T application/json http://192.234.2.2:81/api/auth/login
 ```
 
+![16](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/143835215/5e97abc8-8d0a-448d-bc07-47b49d5ca93b)
+
+## Soal 17
+
+**atreides** Channel memiliki beberapa endpoint yang harus ditesting sebanyak 100 request dengan 10 request/second. Tambahkan response dan hasil testing pada grimoire.
+
 **GET /me**
 
 ### Testing
@@ -1236,17 +1246,7 @@ ab -n 100 -c 10 -p auth.json -T application/json http://192.234.2.2:81/api/auth/
 ab -n 100 -c 10 http://192.234.2.2:81/api/me
 ```
 
-## Soal 16
-
-**atreides** Channel memiliki beberapa endpoint yang harus ditesting sebanyak 100 request dengan 10 request/second. Tambahkan response dan hasil testing pada grimoire.
-
-**POST /auth/login**
-
-## Soal 17
-
-**atreides** Channel memiliki beberapa endpoint yang harus ditesting sebanyak 100 request dengan 10 request/second. Tambahkan response dan hasil testing pada grimoire.
-
-**GET /me**
+![17](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/143835215/8b5e12d6-dda7-46ee-bb07-069ba529020f)
 
 ## Soal 18
 
