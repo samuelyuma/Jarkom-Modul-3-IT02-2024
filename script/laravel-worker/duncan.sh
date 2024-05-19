@@ -115,7 +115,7 @@ server {
 	}
 
 	location ~ /\.ht {
-            deny all;
+        deny all;
     }
 
     error_log /var/log/nginx/deployment_error.log;

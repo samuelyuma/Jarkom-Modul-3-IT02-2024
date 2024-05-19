@@ -66,9 +66,9 @@ service php7.3-fpm restart
 # Soal 18
 echo '
 upstream worker {
-	server 192.234.1.2; # IP Vladimir
-	server 192.234.1.3; # IP Rabban
-	server 192.234.1.4; # IP Feyd
+	server 192.234.2.2; # IP Leto
+	server 192.234.2.3; # IP Duncan
+	server 192.234.2.4; # IP Jessica
 }
 
 server {
@@ -85,9 +85,9 @@ server {
 echo '
 upstream worker {
 	least_conn;
-	server 192.234.1.2; # IP Vladimir
-	server 192.234.1.3; # IP Rabban
-	server 192.234.1.4; # IP Feyd
+	server 192.234.2.2; # IP Leto
+	server 192.234.2.3; # IP Duncan
+	server 192.234.2.4; # IP Jessica
 }
 
 server {

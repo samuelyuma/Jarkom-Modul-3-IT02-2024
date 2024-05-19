@@ -1,8 +1,8 @@
 echo '
-[stilgar]
-user = stilgar_user
-group = stilgar_user
-listen = /var/run/php7.3-fpm-stilgar-site.sock
+[loadbalancer]
+user = loadbalancer_user
+group = loadbalancer_user
+listen = /var/run/php8.0-fpm-loadbalancer-site.sock
 listen.owner = www-data
 listen.group = www-data
 php_admin_value[disable_functions] = exec,passthru,shell_exec,system
@@ -16,9 +16,6 @@ pm.start_servers = 2
 pm.min_spare_servers = 1
 pm.max_spare_servers = 5
 pm.process_idle_timeout = 10s
-' > /etc/php/8.0/fpm/pool.d/stilgar.conf
+' > /etc/php/8.0/fpm/pool.d/loadbalancer.conf
 
-groupadd stilgar_user
-useradd -g stilgar_user stilgar_user
-
-service php7.3-fpm restart
+service php8.0-fpm restart

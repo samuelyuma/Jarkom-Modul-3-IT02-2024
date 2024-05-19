@@ -647,10 +647,10 @@ service php7.3-fpm restart
 ### Testing
 
 ```
-ab -n 1000 -c 100 http://192.234.4.3/
+ab -n 5000 -c 150 http://192.234.4.3/
 ```
 
-![Soal 7](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/53b5fc86-9b55-489e-85c1-004b62800179)
+![Soal 7](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/116187b8-3313-40a1-9aa3-2c19319502dd)
 
 ## Soal 8
 
@@ -661,9 +661,92 @@ Karena diminta untuk menuliskan peta tercepat menuju spice, buatlah analisis has
 -   Grafik request per second untuk masing masing algoritma.
 -   Analisis
 
+### Penyelesaian
+
+a. Gunakan Script dibawah untuk menjalankan load balancer
+
+```
+ab -n 500 -c 50 http://192.234.4.3
+```
+
+b. Untuk mengganti menjadi algoritma lain, hapus `#` pada salah satu algoritma. Misalnya jika ingin menggunakan algoritma Least Connection:
+
+```
+upstream worker {
+	least_conn;
+	# ip_hash;
+	# hash $request_uri consistent;
+	# random two least_conn;
+	server 192.234.1.2; # IP Vladimir
+	server 192.234.1.3; # IP Rabban
+	server 192.234.1.4; # IP Feyd
+}
+```
+
+### Testing
+
+Algoritma Round Robin
+
+![RoundRobin](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/143835215/970a9baa-3500-46f4-a186-8158c69d1747)
+
+Algoritma Least Conn
+
+![LeastConn](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/143835215/ec7fa41f-dd45-4ab4-871d-9e74e3803724)
+
+Algoritma IPHash
+
+![IPHash](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/143835215/2a9939b3-59f3-41ee-8c0e-8cd6b9b672af)
+
+Algoritma Hash
+
+![Hash](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/143835215/07917c28-5f39-44c1-8b0b-3474b360f8f3)
+
+Algoritma Random least Connection
+
+![Random least Connection](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/143835215/99ec2a57-a59a-48a7-beb4-823249f45c96)
+
+Graph
+
+![Screenshot from 2024-05-19 20-01-35](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/143835215/fed83e7e-4f64-4615-8171-6a0575890028)
+
 ## Soal 9
 
 Dengan menggunakan algoritma Least-Connection, lakukan testing dengan menggunakan 3 worker, 2 worker, dan 1 worker sebanyak 1000 request dengan 10 request/second, kemudian tambahkan grafiknya pada peta.
+
+### Penyelesaian
+
+a. Gunakan Script dibawah untuk menjalankan load balancer
+
+```
+ab -n 1000 -c 10 http://192.234.4.3
+```
+
+b. Untuk menggunakan hanya 2 worker, maka kita hanya perlu menghilangkan list servernya
+
+```
+upstream worker {
+	least_conn;
+	# ip_hash;
+	# hash $request_uri consistent;
+	# random two least_conn;
+	server 192.234.1.2; # IP Vladimir
+	server 192.234.1.3; # IP Rabban
+}
+```
+
+### Testing
+
+3 Worker
+
+![3Work](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/143835215/96999297-0202-45cd-8fca-3be0e25beb79)
+
+2 Worker
+
+![2Work](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/143835215/8ad2bb69-ddba-474c-bbce-6bed1afc4b3e)
+
+1 Worker
+
+![1Work](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/143835215/a768366d-b066-40f8-b50c-629912ba04e1)
 
 ## Soal 10
 
@@ -1129,7 +1212,7 @@ a. Tambahkan line berikut pada file `/auth.json`
 ab -n 100 -c 10 -p auth.json -T application/json http://192.234.2.2:81/api/auth/register
 ```
 
-![Soal 15](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/fb64cf3f-af62-4fb4-bee5-946a44652215)
+![15](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/143835215/d616f166-9457-41bd-b2c8-a51013a5361f)
 
 ## Soal 16
 
@@ -1137,11 +1220,27 @@ ab -n 100 -c 10 -p auth.json -T application/json http://192.234.2.2:81/api/auth/
 
 **POST /auth/login**
 
+### Testing
+
+```
+ab -n 100 -c 10 -p auth.json -T application/json http://192.234.2.2:81/api/auth/login
+```
+
+![16](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/143835215/5e97abc8-8d0a-448d-bc07-47b49d5ca93b)
+
 ## Soal 17
 
 **atreides** Channel memiliki beberapa endpoint yang harus ditesting sebanyak 100 request dengan 10 request/second. Tambahkan response dan hasil testing pada grimoire.
 
 **GET /me**
+
+### Testing
+
+```
+ab -n 100 -c 10 http://192.234.2.2:81/api/me
+```
+
+![17](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/143835215/8b5e12d6-dda7-46ee-bb07-069ba529020f)
 
 ## Soal 18
 
@@ -1177,23 +1276,19 @@ a. Edit konfigurasi file `/etc/nginx/sites-available/load-balancer-it02` menjadi
 
 ```
 upstream worker {
-	server 192.234.1.2; # IP Vladimir
-	server 192.234.1.3; # IP Rabban
-	server 192.234.1.4; # IP Feyd
+	server 192.234.2.2; # IP Leto
+	server 192.234.2.3; # IP Duncan
+	server 192.234.2.4; # IP Jessica
 }
 
 server {
 	listen 80;
 
-	root /var/www/html;
-
-	index index.html index.htm index.nginx-debian.html;
-
 	server_name atreides.it02.com www.atreides.it02.com;
 
 	location / {
 		proxy_pass http://worker;
-	}
+    }
 }
 ```
 
@@ -1209,7 +1304,13 @@ service nginx restart
 ab -n 100 -c 10 -p auth.json -T application/json http://atreides.it02.com/api/auth/login
 ```
 
-![Soal 18](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/91a2a004-6827-4115-9ac5-e8f17bbecefe)
+![Soal 18](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/f8198599-4379-42f8-915c-41ad8204f849)
+
+#### Log pada `Leto`
+
+#### Log pada `Duncan`
+
+#### Log pada `Jessica`
 
 ## Soal 19
 
@@ -1221,15 +1322,43 @@ Untuk meningkatkan performa dari Worker, coba implementasikan PHP-FPM pada Leto,
 -   pm.max_spare_servers
     sebanyak tiga percobaan dan lakukan testing sebanyak 100 request dengan 10 request/second kemudian berikan hasil analisisnya pada PDF.
 
-### Setup Load Balancer (Stilgar)
+### Setup Load Balancer Stilgar
 
-a. Tambahkan line berikut pada file `/etc/php/8.0/fpm/pool.d/stilgar.conf`
+a. Edit konfigurasi file `/etc/nginx/sites-available/load-balancer-it02` menjadi seperti berikut
 
 ```
-[stilgar]
-user = stilgar_user
-group = stilgar_user
-listen = /var/run/php7.3-fpm-stilgar-site.sock
+upstream worker {
+	server 192.234.2.2; # IP Leto
+	server 192.234.2.3; # IP Duncan
+	server 192.234.2.4; # IP Jessica
+}
+
+server {
+	listen 80;
+
+	server_name atreides.it02.com www.atreides.it02.com;
+
+	location / {
+		proxy_pass http://worker;
+    }
+}
+```
+
+b. Restart service dari nginx
+
+```
+service nginx restart
+```
+
+### Setup Laravel Worker (Leto, Duncan, Jessica)
+
+a. Tambahkan line berikut pada file `/etc/php/8.0/fpm/pool.d/loadbalancer.conf`
+
+```
+[loadbalancer]
+user = loadbalancer_user
+group = loadbalancer_user
+listen = /var/run/php8.0-fpm-loadbalancer-site.sock
 listen.owner = www-data
 listen.group = www-data
 php_admin_value[disable_functions] = exec,passthru,shell_exec,system
@@ -1256,6 +1385,8 @@ pm.min_spare_servers = 1
 pm.max_spare_servers = 5
 ```
 
+![19 - 1](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/afe8b814-6f75-4a94-8641-f4c3b48b1abc)
+
 #### Percobaan Kedua
 
 ```
@@ -1265,6 +1396,8 @@ pm.min_spare_servers = 3
 pm.max_spare_servers = 10
 ```
 
+![19 - 2](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/b003e8cb-becd-46d4-b3d4-7d73f0c25ead)
+
 #### Percobaan Ketiga
 
 ```
@@ -1273,6 +1406,8 @@ pm.start_servers = 10
 pm.min_spare_servers = 5
 pm.max_spare_servers = 20
 ```
+
+![19 - 3](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/c4eef931-d78b-407b-b25a-582fd1d970a9)
 
 ## Soal 20
 
@@ -1285,9 +1420,9 @@ a. Edit bagian `upstream worker` pada file `/etc/nginx/sites-available/load-bala
 ```
 upstream worker {
 	least_conn;
-	server 192.234.1.2; # IP Vladimir
-	server 192.234.1.3; # IP Rabban
-	server 192.234.1.4; # IP Feyd
+	server 192.234.2.2; # IP Leto
+	server 192.234.2.3; # IP Duncan
+	server 192.234.2.4; # IP Jessica
 }
 ```
 
@@ -1305,10 +1440,6 @@ ab -n 100 -c 10 http://192.234.4.3/
 
 **Sebelum menggunakan algoritma `least_conn`**
 
-![Soal 20 - 1](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/4efd977e-3f99-4665-bafd-74f88494d8fb)
-
 **Sesudah menggunakan algoritma `least_conn`**
-
-![Soal 20 - 2](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/d80c92f3-68f0-4e03-9cc2-48250a5c6836)
 
 Dari screenshot tersebut, dapat dilihat bahwa ...
