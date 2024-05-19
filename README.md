@@ -661,9 +661,98 @@ Karena diminta untuk menuliskan peta tercepat menuju spice, buatlah analisis has
 -   Grafik request per second untuk masing masing algoritma.
 -   Analisis
 
+a. Gunakan Script dibawah untuk menjalankan load balancer
+
+```
+ab -n 500 -c 50 http://192.234.4.3
+```
+
+b. Untuk mengganti menjadi algoritma lain, hapus `#` pada salah satu algoritma. Misalnya jika ingin menggunakan algoritma Least Connection:
+
+```
+	upstream worker {
+   	 least_conn;
+   	 # ip_hash;
+   	 # hash $request_uri consistent;
+   	 # random two least_conn;
+    	server 192.234.1.2; # IP Vladimir
+    	server 192.234.1.3; # IP Rabban
+    	server 192.234.1.4; # IP Feyd
+	}
+```
+
+
+Algoritma Round Robin
+
+![RoundRobin](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/143835215/970a9baa-3500-46f4-a186-8158c69d1747)
+
+
+Algoritma Least Conn
+
+![LeastConn](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/143835215/ec7fa41f-dd45-4ab4-871d-9e74e3803724)
+
+
+Algoritma IPHash
+
+![IPHash](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/143835215/2a9939b3-59f3-41ee-8c0e-8cd6b9b672af)
+
+
+Algoritma Hash
+
+![Hash](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/143835215/07917c28-5f39-44c1-8b0b-3474b360f8f3)
+
+
+Algoritma Random least Connection
+
+![Random least Connection](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/143835215/99ec2a57-a59a-48a7-beb4-823249f45c96)
+
+Graph
+
+![Screenshot from 2024-05-19 20-01-35](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/143835215/fed83e7e-4f64-4615-8171-6a0575890028)
+
+
+
 ## Soal 9
 
 Dengan menggunakan algoritma Least-Connection, lakukan testing dengan menggunakan 3 worker, 2 worker, dan 1 worker sebanyak 1000 request dengan 10 request/second, kemudian tambahkan grafiknya pada peta.
+
+a. Gunakan Script dibawah untuk menjalankan load balancer
+
+```
+ab -n 1000 -c 10 http://192.234.4.3
+```
+
+b. Untuk menggunakan hanya 2 worker, maka kita hanya perlu menghilangkan list servernya
+
+```
+	upstream worker {
+   	 least_conn;
+   	 # ip_hash;
+   	 # hash $request_uri consistent;
+   	 # random two least_conn;
+    	server 192.234.1.2; # IP Vladimir
+    	server 192.234.1.3; # IP Rabban
+	}
+```
+
+Hasil
+
+
+3 Worker
+
+![3Work](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/143835215/96999297-0202-45cd-8fca-3be0e25beb79)
+
+2 Worker
+
+![2Work](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/143835215/8ad2bb69-ddba-474c-bbce-6bed1afc4b3e)
+
+1 Worker
+
+![1Work](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/143835215/a768366d-b066-40f8-b50c-629912ba04e1)
+
+Graph
+
+![Screenshot from 2024-05-19 20-01-47](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/143835215/3c2a4540-4c28-45e9-9ad0-ab7f84d0c08a)
 
 ## Soal 10
 
@@ -1130,6 +1219,22 @@ ab -n 100 -c 10 -p auth.json -T application/json http://192.234.2.2:81/api/auth/
 ```
 
 ![Soal 15](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/fb64cf3f-af62-4fb4-bee5-946a44652215)
+
+**POST /auth/login**
+
+### Testing
+
+```
+ab -n 100 -c 10 -p auth.json -T application/json http://192.234.2.2:81/api/auth/login
+```
+
+**GET /me**
+
+### Testing
+
+```
+ab -n 100 -c 10 http://192.234.2.2:81/api/me
+```
 
 ## Soal 16
 
