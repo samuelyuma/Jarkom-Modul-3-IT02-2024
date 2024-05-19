@@ -1321,13 +1321,21 @@ service nginx restart
 ab -n 100 -c 10 -p auth.json -T application/json http://atreides.it02.com/api/auth/login
 ```
 
-![Soal 18](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/f8198599-4379-42f8-915c-41ad8204f849)
+![Soal 18](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/c9ebfa31-f542-45ff-8253-cb72dee1f0a7)
+
+Log dapat diakses di setiap **Laravel Worker** pada file `access.log` dalam direktori `/var/log/nginx/`
 
 #### Log pada `Leto`
 
+![Soal 18 - 1](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/0469f217-1f00-4b94-958a-1a3b37952fea)
+
 #### Log pada `Duncan`
 
+![Soal 18 - 2](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/b6d63567-145c-426e-94f2-8f8a4317bb14)
+
 #### Log pada `Jessica`
+
+![Soal 18 - 3](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/7523379d-a117-4af1-800f-925c4b03aa1c)
 
 ## Soal 19
 
@@ -1457,6 +1465,21 @@ ab -n 100 -c 10 http://192.234.4.3/
 
 **Sebelum menggunakan algoritma `least_conn`**
 
+![Soal 20 - 2](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/3c1d1b07-641e-4bd7-acba-e443fdd7a8d3)
+
 **Sesudah menggunakan algoritma `least_conn`**
 
-Dari screenshot tersebut, dapat dilihat bahwa ...
+![Soal 20 - 1](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/57614989-8529-4c54-beb3-a47e2e71f764)
+
+Dari screenshot tersebut, dapat dilihat bahwa:
+
+-   Algoritma default menyelesaikan pengujian lebih lama dibandingkan algoritma **Least Connection**
+-   Algoritma default memiliki lebih banyak `request per second` yang menunjukkan bahwa performanya lebih baik dibandingkan dengan algoritma **Least Connection**
+-   Algoritma default mempunyai `average request time` yang lebih rendah yang menunjukkan bahwa algoritma tersebut punya respons yang lebih cepat dibandingkan dengan algoritma **Least Connection**
+-   Algoritma default memiliki tingkat `transfer rate` yang lebih tinggi, baik dalam mengirim maupun menerima data jika dibandingkan dengan algoritma **Least Connection**
+
+**FYI**: Algoritma default adalah algoritma **Round Robins**
+
+#### Kesimpulan Soal 20
+
+Algoritma default (**Round Robins**) menunjukkan performa yang lebih baik dengan waktu penyelesaian lebih cepat, lebih banyak permintaan per detik, waktu per permintaan yang lebih rendah, dan tingkat transfer yang lebih tinggi. Selain itu, algoritma tersebut juga menunjukkan stabilitas yang lebih baik dengan distribusi waktu permintaan yang lebih konsisten.
