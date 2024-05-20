@@ -1305,7 +1305,7 @@ service nginx restart
 ab -n 100 -c 10 -p auth.json -T application/json http://atreides.it02.com/api/auth/login
 ```
 
-![Soal 18](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/cda81270-b778-4cd9-9c70-bbc8e5757757)
+![Soal 18](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/c1a47d67-3a32-452b-bb25-15c3ad04ec97)
 
 Log dapat diakses di setiap **Laravel Worker** pada file `access.log` dalam direktori `/var/log/nginx/`
 
@@ -1447,7 +1447,7 @@ service nginx restart
 ab -n 100 -c 10 http://192.234.4.3/
 ```
 
-![Soal 20](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/2f8631f8-2133-4ac1-8e2a-1a3f8c1224f7)
+![Soal 20](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/cd4f5d53-ba36-4dc1-a6b2-09941bd0531f)
 
 ## Peta Spice
 
