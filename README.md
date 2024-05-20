@@ -706,7 +706,7 @@ Algoritma Random least Connection
 
 ![Random least Connection](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/143835215/99ec2a57-a59a-48a7-beb4-823249f45c96)
 
-Graph
+### Graph
 
 ![Screenshot from 2024-05-19 20-01-35](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/143835215/fed83e7e-4f64-4615-8171-6a0575890028)
 
@@ -739,15 +739,19 @@ upstream worker {
 
 3 Worker
 
-![3Work](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/143835215/96999297-0202-45cd-8fca-3be0e25beb79)
+![3Work](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/143835215/aeae6214-51cc-437c-bd9a-a553f40db2e9)
 
 2 Worker
 
-![2Work](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/143835215/8ad2bb69-ddba-474c-bbce-6bed1afc4b3e)
+![2Work](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/143835215/8c235dd7-bad2-4ffa-93ac-62167bc82c85)
 
 1 Worker
 
-![1Work](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/143835215/a768366d-b066-40f8-b50c-629912ba04e1)
+![1Work](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/143835215/2e9c272d-470b-4529-9d03-8a7b64fee827)
+
+### Grafik
+
+![Screenshot from 2024-05-19 22-24-04](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/143835215/0f41ff6c-61b0-4da7-953a-c63f582ad4d0)
 
 ## Soal 10
 
@@ -1213,7 +1217,7 @@ a. Tambahkan line berikut pada file `/auth.json`
 ab -n 100 -c 10 -p auth.json -T application/json http://192.234.2.2:81/api/auth/register
 ```
 
-![15](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/143835215/d616f166-9457-41bd-b2c8-a51013a5361f)
+![15](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/143835215/37f61ded-2103-44da-ba22-87d51efb57c6)
 
 ## Soal 16
 
@@ -1227,7 +1231,7 @@ ab -n 100 -c 10 -p auth.json -T application/json http://192.234.2.2:81/api/auth/
 ab -n 100 -c 10 -p auth.json -T application/json http://192.234.2.2:81/api/auth/login
 ```
 
-![16](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/143835215/5e97abc8-8d0a-448d-bc07-47b49d5ca93b)
+![16](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/143835215/07d7eeb3-6575-498c-b688-b0798e766ac7)
 
 ## Soal 17
 
@@ -1241,7 +1245,7 @@ ab -n 100 -c 10 -p auth.json -T application/json http://192.234.2.2:81/api/auth/
 ab -n 100 -c 10 http://192.234.2.2:81/api/me
 ```
 
-![17](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/143835215/8b5e12d6-dda7-46ee-bb07-069ba529020f)
+![17](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/143835215/52f3302b-2a97-4e6f-8e4c-56b7d4408b7e)
 
 ## Soal 18
 
