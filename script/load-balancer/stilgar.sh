@@ -97,7 +97,7 @@ server {
 
 	index index.html index.htm index.nginx-debian.html;
 
-	server_name proxy-bind.it02.com www.proxy-bind.it02.com;
+	server_name atreides.it02.com www.atreides.it02.com;
 
 	location / {
 		proxy_pass http://worker;

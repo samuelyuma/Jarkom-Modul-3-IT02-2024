@@ -24,9 +24,6 @@ mkdir /etc/bind/it02
 cp /etc/bind/db.local /etc/bind/it02/atreides.it02.com
 cp /etc/bind/db.local /etc/bind/it02/harkonen.it02.com
 
-# Soal 18
-cp /etc/bind/db.local /etc/bind/it02/proxy-bind.it02.com
-
 echo '
 ; BIND data file for Atreides domain to Leto (Soal 0)
 $TTL    604800

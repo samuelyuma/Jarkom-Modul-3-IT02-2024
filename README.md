@@ -29,6 +29,7 @@ Kelompok IT02 :
 [Soal 18](#soal-18)</br>
 [Soal 19](#soal-19)</br>
 [Soal 20](#soal-20)</br>
+[Peta Spice](#peta-spice)</br>
 
 ### Topologi
 
@@ -1304,7 +1305,7 @@ service nginx restart
 ab -n 100 -c 10 -p auth.json -T application/json http://atreides.it02.com/api/auth/login
 ```
 
-![Soal 18](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/c9ebfa31-f542-45ff-8253-cb72dee1f0a7)
+![Soal 18](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/cda81270-b778-4cd9-9c70-bbc8e5757757)
 
 Log dapat diakses di setiap **Laravel Worker** pada file `access.log` dalam direktori `/var/log/nginx/`
 
@@ -1446,23 +1447,8 @@ service nginx restart
 ab -n 100 -c 10 http://192.234.4.3/
 ```
 
-**Sebelum menggunakan algoritma `least_conn`**
+![Soal 20](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/2f8631f8-2133-4ac1-8e2a-1a3f8c1224f7)
 
-![Soal 20 - 2](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/3c1d1b07-641e-4bd7-acba-e443fdd7a8d3)
+## Peta Spice
 
-**Sesudah menggunakan algoritma `least_conn`**
-
-![Soal 20 - 1](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/118542326/57614989-8529-4c54-beb3-a47e2e71f764)
-
-Dari screenshot tersebut, dapat dilihat bahwa:
-
--   Algoritma default menyelesaikan pengujian lebih lama dibandingkan algoritma **Least Connection**
--   Algoritma default memiliki lebih banyak `request per second` yang menunjukkan bahwa performanya lebih baik dibandingkan dengan algoritma **Least Connection**
--   Algoritma default mempunyai `average request time` yang lebih rendah yang menunjukkan bahwa algoritma tersebut punya respons yang lebih cepat dibandingkan dengan algoritma **Least Connection**
--   Algoritma default memiliki tingkat `transfer rate` yang lebih tinggi, baik dalam mengirim maupun menerima data jika dibandingkan dengan algoritma **Least Connection**
-
-**FYI**: Algoritma default adalah algoritma **Round Robins**
-
-#### Kesimpulan Soal 20
-
-Algoritma default (**Round Robins**) menunjukkan performa yang lebih baik dengan waktu penyelesaian lebih cepat, lebih banyak permintaan per detik, waktu per permintaan yang lebih rendah, dan tingkat transfer yang lebih tinggi. Selain itu, algoritma tersebut juga menunjukkan stabilitas yang lebih baik dengan distribusi waktu permintaan yang lebih konsisten.
+Untuk mengakses peta Spice, dapat menuju ke [link berikut ini]()
