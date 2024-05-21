@@ -1228,7 +1228,11 @@ ab -n 100 -c 10 -p auth.json -T application/json http://192.234.2.2:81/api/auth/
 ### Testing
 
 ```
-ab -n 100 -c 10 -p auth.json -T application/json http://192.234.2.2:81/api/auth/login
+curl -X POST -H "Content-Type: application/json" -d @auth.json http://192.234.2.2:81/api/auth/login > token.txt
+
+bearer_token=$(cat token.txt | jq -r '.token')
+
+ab -n 100 -c 10 -H "Authorization: Bearer $bearer_token" http://192.234.2.2:81/api/me
 ```
 
 ![16](https://github.com/samuelyuma/Jarkom-Modul-3-IT02-2024/assets/143835215/07d7eeb3-6575-498c-b688-b0798e766ac7)
