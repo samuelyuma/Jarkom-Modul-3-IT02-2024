@@ -1459,4 +1459,4 @@ ab -n 100 -c 10 http://192.234.4.3/
 
 ## Peta Spice
 
-Untuk mengakses peta Spice, dapat menuju ke [link berikut ini]()
+Untuk mengakses peta Spice, dapat menuju ke [link berikut ini](https://docs.google.com/document/d/1lmqr3kLx4u76oMEyzQ3mr0YaFSwp6WPuTvVQk_ySNGI/edit?usp=sharing)
